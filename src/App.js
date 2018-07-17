@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Person from './Person/Person';
-import Radium, { StyleRoot } from 'radium';
 import './App.css';
 
 class App extends Component {
@@ -47,11 +46,7 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
+      cursor: 'pointer'
     };
 
     let people = null;
@@ -70,7 +65,6 @@ class App extends Component {
         </div>
       )
       style.backgroundColor = 'red';
-      style[':hover'].backgroundColor = 'salmon';
     }
 
     const classes = [];
@@ -82,8 +76,6 @@ class App extends Component {
     }
 
     return (
-      // StyleRoot is mandatory from Radium to use the @media-query that is inside Person Component
-      <StyleRoot>
         <div className="App">
           <h1>Hello world!</h1>
           <p className={classes.join(' ')}>People name's</p>
@@ -92,9 +84,8 @@ class App extends Component {
             onClick={this.togglePeopleHandler.bind(this, 'Oliver Strobel')}>Toggle people</button>
             {people}
         </div>
-      </StyleRoot>
     );
   }
 }
 
-export default Radium(App);
+export default App;

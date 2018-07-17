@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Person from './Person/Person';
 import styles from './App.css';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -48,12 +49,14 @@ class App extends Component {
       people = (
         <div>
           { this.state.people.map((person, index) => (
-            <Person
-              key={person.id}
-              name={person.name} 
-              age={person.age}
-              click={this.deletePersonHandler.bind(this, index)}
-              change={event => this.nameChangedHandler(event, person.id)} />
+            // ErrorBoundaries only works during production and should only used where error treatments are part of the app
+            <ErrorBoundary key={person.id}>
+              <Person
+                name={person.name} 
+                age={person.age}
+                click={this.deletePersonHandler.bind(this, index)}
+                change={event => this.nameChangedHandler(event, person.id)} />
+              </ErrorBoundary>
           )) }
         </div>
       )

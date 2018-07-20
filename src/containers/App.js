@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styles from './App.css';
 import People from '../components/People/People';
 import Cockpit from '../components/Cockpit/Cockpit';
+import addClass from '../hoc/addClass2ndOption';
 
 class App extends Component {
   state = {
@@ -51,12 +52,12 @@ class App extends Component {
     }
 
     return (
-        <div className={styles.App}>
+        <Fragment>
           <Cockpit appTitle={this.props.title} people={this.state.people} showPeople={this.state.showPeople} click={this.togglePeopleHandler}/>
           {people}
-        </div>
+        </Fragment>
     );
   }
 }
 
-export default App;
+export default addClass(App, styles.App);

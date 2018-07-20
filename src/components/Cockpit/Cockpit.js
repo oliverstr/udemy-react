@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styles from './Cockpit.css';
-import Aux from '../../hoc/Aux';
 
 const Cockpit = ({people, showPeople, click, appTitle}) => {
 
@@ -19,13 +18,13 @@ const Cockpit = ({people, showPeople, click, appTitle}) => {
     }
 
     return (
-        // Aux prevents having to create another div. It only prints whatever children it has and only works on React 16+
-        <Aux> 
+        // Fragment replaces the use of a redundant div
+        <Fragment> 
             <h1>{appTitle}</h1>
             <p className={classes.join(' ')}>People names</p>
             <button className={buttonClass}
             onClick={() => click('Oliver Strobel')}>Toggle people</button>
-        </Aux>
+        </Fragment>
     );
 }
 

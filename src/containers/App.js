@@ -4,6 +4,8 @@ import People from '../components/People/People';
 import Cockpit from '../components/Cockpit/Cockpit';
 import addClass from '../hoc/addClass2ndOption';
 
+export const AuthContext = React.createContext(false);
+
 class App extends Component {
   state = {
     people: [
@@ -11,7 +13,8 @@ class App extends Component {
       { id: 2, name: 'Jair', age: 20 },
       { id: 3, name: 'Beto', age: 32 }
     ],
-    showPeople: false
+    showPeople: false,
+    authenticated: false
   }
 
   togglePeopleHandler = () => {
@@ -39,6 +42,10 @@ class App extends Component {
     this.setState({ people: people });
   }
 
+  loginClickHandler = () => {
+    this.setState({authenticated: true});
+  }
+
 
   render() {
     // OPTIONAL INLINE STYLE (THIS IS SCOPED, NOT GLOBAL)
@@ -54,7 +61,10 @@ class App extends Component {
     return (
         <Fragment>
           <Cockpit appTitle={this.props.title} people={this.state.people} showPeople={this.state.showPeople} click={this.togglePeopleHandler}/>
-          {people}
+          <button onClick={this.loginClickHandler}>Log in </button>
+          <AuthContext.Provider value={this.state.authenticated}>
+            {people}
+          </AuthContext.Provider>
         </Fragment>
     );
   }
